@@ -136,7 +136,7 @@ function App() {
                         <nav className="p-2">
                             <div className="container mx-auto flex justify-between items-center">
                                 <a href="#" className="text-black text-lg font-bold">
-                                    <img src="/greenshop.png" className="h-14" />
+                                    <img src="greenshop.png" className="h-14" />
 
                                 </a>
                                 <button id="menu-btn" className="text-black block md:hidden" onClick={() => setMenuOpen(!menuOpen)}>
@@ -159,7 +159,7 @@ function App() {
 
                         <aside className=" p-10 flex overflow-auto md:justify-center items-center" id="sobre">
                             <div className="hidden md:block" id="logo" >
-                                <img src="/greenshop.png" alt="" />
+                                <img src="greenshop.png" alt="" />
                             </div>
                             <div className="">
 
@@ -193,9 +193,9 @@ function App() {
                         <div className="flex justify-center items-center ">
                             <Carousel className="w-40 lg:w-60 rounded-lg">
                                 <CarouselContent>
-                                    <CarouselItem><img src="/modelo.jpeg" alt="" /></CarouselItem>
+                                    <CarouselItem><img src="modelo.jpeg" alt="" /></CarouselItem>
                                     <CarouselItem><img src="modelo2.jpeg" alt="" /></CarouselItem>
-                                    <CarouselItem><img src="/modelo3.jpeg" alt="" /></CarouselItem>
+                                    <CarouselItem><img src="modelo3.jpeg" alt="" /></CarouselItem>
 
                                 </CarouselContent>
                                 <CarouselPrevious />

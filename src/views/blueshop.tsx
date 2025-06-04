@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 //import { CircleCheckIcon, CircleHelpIcon, CircleIcon } from "lucide-react";
 import { getProdutos } from "../services/produtos";
 import type { Produto } from "../types/Produto";
+import { getCategorias } from "../services/categorias";
+import type { Categoria } from "../types/Categoria";
 import { Button } from "@/components/ui/button"
 import { BsBagHeartFill } from "react-icons/bs";
 import { BsBasketFill } from "react-icons/bs";
@@ -46,8 +48,9 @@ import {
 
 
 function App() {
-    
+
     const [produtos, setProdutos] = useState<Produto[]>([]);
+    const [categorias, setCategorias] = useState<Categoria[]>([]);
     const [menuOpen, setMenuOpen] = useState(false);
 
     useEffect(() => {
@@ -63,24 +66,39 @@ function App() {
         loadData();
     }, []);
 
+    useEffect(() => {
+        async function loadCategoria() {
+            try {
+                const data = await getCategorias();
+                setCategorias(data.slice(0, 2));
+            } catch (error) {
+                console.error("Erro ao buscar categorias:", error);
+            }
+        }
+
+        loadCategoria();
+    }, []);
+
+
+
     return (
         <>
             <div id="blueShop" >
                 <header>
                     <div id="header-maior" className=" place-items-center bg-green-700 lg:p-3">
-                        <NavigationMenu className="hidden md:block ">
+                        <NavigationMenu className="hidden md:block p-3">
                             <NavigationMenuList>
                                 <NavigationMenuItem>
                                     <NavigationMenuLink className="bg-green-700 text-white  mr-2 hover:bg-white pt-2 pb-2 pl-4 pr-4 rounded-lg hover:text-green-700 font-semibold"><a href="#sobre">Início</a></NavigationMenuLink>
                                 </NavigationMenuItem>
 
                                 <NavigationMenuItem>
-                                    <NavigationMenuLink className="bg-green-700 text-white  mr-2 hover:bg-white pt-2 pb-2 pl-4 pr-4 rounded-lg hover:text-green-700 font-semibold"><a href="#sobre">Produtos</a></NavigationMenuLink>
+                                    <NavigationMenuLink className="bg-green-700 text-white  mr-2 hover:bg-white pt-2 pb-2 pl-4 pr-4 rounded-lg hover:text-green-700 font-semibold"><a href="#produtos">Produtos</a></NavigationMenuLink>
                                 </NavigationMenuItem>
 
                                 <NavigationMenuItem >
                                     <NavigationMenuLink asChild className="bg-green-700 text-white mr-2 hover:bg-white pt-2 pb-2 pl-4 pr-4 rounded-lg hover:text-green-700 font-semibold">
-                                        <Link to="https://github.com/feliixjuliana/blueshop-web2">Docs</Link>
+                                        <Link target="_blank" to="https://github.com/feliixjuliana/blueshop-web2">Docs</Link>
                                     </NavigationMenuLink>
                                 </NavigationMenuItem>
 
@@ -126,10 +144,10 @@ function App() {
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#81a85d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" x2="21" y1="6" y2="6"></line><line x1="3" x2="21" y1="12" y2="12"></line><line x1="3" x2="21" y1="18" y2="18"></line></svg>
                                 </button>
                                 <div id="menu" className={`${menuOpen ? 'flex' : 'hidden'} flex-col space-y-2`}>
-                                    <a href="#" className="text-black-300 hover:text-white font-bold">Home</a>
-                                    <a href="#card-roupas" className="text-black-300 hover:text-white font-bold">Produtos</a>
-                                    <a href="#" className="text-black-300 hover:text-white font-bold">Docs</a>
-                                    <a href="#" className="text-black-300 hover:text-white font-bold">Sobre</a>
+                                    <a href="#" className="font-bold text-green-700">Sobre</a>
+                                    <a href="#produtos" className="font-bold text-green-700">Produtos</a>
+                                    <Link target="_blank" to="https://github.com/feliixjuliana" className="font-bold text-green-700">Docs</Link>
+                                    <a href="#footer" className="font-bold text-green-700">Mais</a>
                                 </div>
                             </div>
                         </nav>
@@ -146,7 +164,7 @@ function App() {
                             </div>
                             <div className="">
 
-                                <p className="text-lg md:text-base lg:text-lg font-bold  text-center border border-green-600 bg-white-100 text-white rounded-lg">Sua loja de referência para roupas e apetrechos que combinam estilo, qualidade e conforto.</p>
+                                <p className="text-lg md:text-base lg:text-xl font-bold  text-center border border-green-600 bg-white-100 text-white rounded-lg lg:max-w-sm lg:ml-32">Sua loja de referência para roupas e apetrechos que combinam estilo, qualidade e conforto.</p>
                             </div>
 
 
@@ -156,9 +174,9 @@ function App() {
                                 <DropdownMenu>
                                     <DropdownMenuTrigger className="font-bold text-white border p-4 rounded-full ">Categorias</DropdownMenuTrigger>
                                     <DropdownMenuContent>
-                                        {produtos.map((produto) => (
-                                            <div key={produto.category.name}>
-                                                <DropdownMenuLabel>{produto.category.name}</DropdownMenuLabel>
+                                        {categorias.map((categoria) => (
+                                            <div key={categoria.id}>
+                                                <DropdownMenuLabel>{categoria.name}</DropdownMenuLabel>
                                             </div>))}
                                     </DropdownMenuContent>
                                 </DropdownMenu>
@@ -188,7 +206,7 @@ function App() {
                     </div>
 
 
-                    <div className=" grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-7 m-4 ">
+                    <div className=" grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-7 m-4 " id="produtos">
                         {produtos.map((produto) => (
                             <div key={produto.id} className="bg-green-700 bg-opacity-50 p-3 rounded-xl">
                                 <a href="#">
@@ -255,7 +273,29 @@ function App() {
                 </main >
 
 
-                <footer className="w-full bg-green-700 p-4 flex justify-content-center">
+                <footer className="w-full bg-green-700   p-4 text-white font-bold grid gap-4 " id="footer">
+                    <a href=".blueshop"><button className="bg-green-700 roudend-full w-full">Voltar ao início</button></a>
+
+                    <nav className="grid grid-cols-2 md:grid-cols-3 gap-4 m-6">
+                    <div>
+                        <h3 >Conheça-nos:</h3>
+                        <p className="font-normal"><Link to="">Instagram</Link></p>
+                        <p className="font-normal"><Link target="_blank" to="https://www.linkedin.com/in/feliixjuliana/">LinkedIn</Link></p>
+                        <p className="font-normal"><Link target="_blank" to="https://github.com/feliixjuliana">Github</Link></p>
+                    </div>
+                    <div>
+                        <h3>Meios de Pagamentos:</h3>
+                        <p className="font-normal"><Link to="">Crédito</Link></p>
+                        <p className="font-normal"><Link to="">Debito</Link></p>
+                        <p className="font-normal"><Link to="">Pix</Link></p>
+                    </div>
+                    <div>
+                        <h3>Deixe-nos ajudar você:</h3>
+                        <p className="font-normal"><Link to="">Criar Conta</Link></p>
+                        <p className="font-normal"><Link to="">Acessar Conta</Link></p>
+                        <p className="font-normal"><Link to="">Suporte</Link></p>
+                    </div>
+                    </nav>
 
                 </footer>
             </div >

@@ -66,7 +66,7 @@ function App() {
         <>
 
             <main className="flex flex-col justify-center align-center">
-                <div className="bg-[url('../public/fotoinicial.jpeg')] bg-no-repeat bg-cover">
+                <div className="bg-[url('fotoinicial.jpeg')] bg-no-repeat bg-cover">
 
                     <aside className=" p-10 flex overflow-auto md:justify-center items-center" id="sobre">
                         <div className="hidden md:block" id="logo" >

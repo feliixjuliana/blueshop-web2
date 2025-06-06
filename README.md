@@ -1,54 +1,63 @@
 # React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# 🛍️ GreenShop Web2 (Houve alteração no nome, devido a mudança de cor desejada pelo "cliente")
 
-Currently, two official plugins are available:
+Este projeto é uma aplicação web desenvolvida para consumir uma API de e-commerce, como parte da disciplina de **Web2** no curso de **Análise e Desenvolvimento de Sistemas**. O objetivo é criar uma interface funcional que interaja com dados de produtos, utilizando tecnologias modernas de desenvolvimento web.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+##Acesse o site do Projeto aqui: https://feliixjuliana.github.io/blueshop-web2/
 
-## Expanding the ESLint configuration
+## 🚀 Tecnologias Utilizadas
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **React**
+- **TypeScript**
+- **Tailwind CSS**
+- **Flowbite**
+- **shadcn/ui**
+- **React Router**
+- **Axios**:
+- **Vite**
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## 🔧 Como Rodar o Projeto Localmente
+
+Siga os passos abaixo para executar o projeto localmente:
+
+1. **Clone o repositório:**
+
+   ```bash
+   git clone https://github.com/feliixjuliana/blueshop-web2.git
+````
+
+2. **Navegue até o diretório do projeto:**
+
+   ```bash
+   cd blueshop-web2
+   ```
+
+3. **Instale as dependências:**
+
+   ```bash
+   npm install
+   ```
+
+4. **Inicie o servidor de desenvolvimento:**
+
+   ```bash
+   npm run dev
+   ```
+
+## 🌐 Consumo da API
+
+A aplicação consome dados da API (https://fakeapi.platzi.com/) de e-commerce, permitindo:
+
+* Listagem de produtos;
+* Visualização de detalhes;
+
+As requisições são feitas utilizando o Axios, com tratamento de carregamento e erros apropriado. O spinner de carregamento foi implementado com Flowbite, e os componentes de interface foram construídos com shadcn/ui e Tailwind CSS.
+
+## 📚 Licença
+
+Este projeto é de uso educacional, desenvolvido como parte da disciplina de Web2 no curso de Análise e Desenvolvimento de Sistemas.
+
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```

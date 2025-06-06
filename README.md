@@ -1,6 +1,7 @@
 # React + TypeScript + Vite
 
-# 🛍️ GreenShop Web2 (Houve alteração no nome, devido a mudança de cor desejada pelo "cliente")
+# 🛍️ GreenShop Web2 
+(Houve alteração no nome, devido a mudança de cor desejada pelo "cliente")
 
 Este projeto é uma aplicação web desenvolvida para consumir uma API de e-commerce, como parte da disciplina de **Web2** no curso de **Análise e Desenvolvimento de Sistemas**. O objetivo é criar uma interface funcional que interaja com dados de produtos, utilizando tecnologias modernas de desenvolvimento web.
 

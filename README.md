@@ -23,27 +23,19 @@ Siga os passos abaixo para executar o projeto localmente:
 
 1. **Clone o repositório:**
 
-   ```bash
    git clone https://github.com/feliixjuliana/blueshop-web2.git
-````
 
 2. **Navegue até o diretório do projeto:**
 
-   ```bash
    cd blueshop-web2
-   ```
 
 3. **Instale as dependências:**
 
-   ```bash
    npm install
-   ```
 
 4. **Inicie o servidor de desenvolvimento:**
 
-   ```bash
    npm run dev
-   ```
 
 ## 🌐 Consumo da API
 
@@ -58,6 +50,5 @@ As requisições são feitas utilizando o Axios, com tratamento de carregamento 
 
 Este projeto é de uso educacional, desenvolvido como parte da disciplina de Web2 no curso de Análise e Desenvolvimento de Sistemas.
 
-```
 
 

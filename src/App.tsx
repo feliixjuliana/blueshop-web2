@@ -1,9 +1,9 @@
-import Blueshop from "./views/blueshop";
+import Greenshop from "./views/greenshop"
 
 function App() {
   return (
     <>
-      <Blueshop />
+      <Greenshop />
     </>
   );
 }

@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import { BsBagHeartFill } from "react-icons/bs";
 import { BsBasketFill } from "react-icons/bs";
 import Carrossel from "./carrossel";
+import Spinner from "./spinner"
 
 
 import {
@@ -29,6 +30,7 @@ function App() {
 
     const [produtos, setProdutos] = useState<Produto[]>([]);
     const [categorias, setCategorias] = useState<Categoria[]>([]);
+    const [spinner, setSpinner] = useState(true);
 
     useEffect(() => {
         async function loadData() {
@@ -37,6 +39,8 @@ function App() {
                 setProdutos(data.slice(0, 12));
             } catch (error) {
                 console.error("Erro ao buscar produtos:", error);
+            } finally {
+                setSpinner(false)
             }
         }
 
@@ -61,46 +65,46 @@ function App() {
     return (
         <>
 
-                <main className="flex flex-col justify-center align-center">
-                    <div className="bg-[url('../public/fotoinicial.jpeg')] bg-no-repeat bg-cover">
+            <main className="flex flex-col justify-center align-center">
+                <div className="bg-[url('../public/fotoinicial.jpeg')] bg-no-repeat bg-cover">
 
-                        <aside className=" p-10 flex overflow-auto md:justify-center items-center" id="sobre">
-                            <div className="hidden md:block" id="logo" >
-                                <img src="greenshop.png" alt="" />
-                            </div>
-                            <div className="">
+                    <aside className=" p-10 flex overflow-auto md:justify-center items-center" id="sobre">
+                        <div className="hidden md:block" id="logo" >
+                            <img src="greenshop.png" alt="" />
+                        </div>
+                        <div className="">
 
-                                <p className="text-lg md:text-base lg:text-xl font-bold  text-center border border-green-600 bg-white-100 text-white rounded-lg lg:max-w-sm lg:ml-32">Sua loja de referência que combina estilo, qualidade e conforto.</p>
-                            </div>
-
-
-                        </aside>
-                        <nav className="flex">
-                            <div className="p-5 pr-2">
-                                <DropdownMenu>
-                                    <DropdownMenuTrigger className="font-bold text-white border p-4 rounded-full ">Categorias</DropdownMenuTrigger>
-                                    <DropdownMenuContent>
-                                        {categorias.map((categoria) => (
-                                            <div key={categoria.id}>
-                                                <DropdownMenuLabel>{categoria.name}</DropdownMenuLabel>
-                                            </div>))}
-                                    </DropdownMenuContent>
-                                </DropdownMenu>
-                            </div>
-                            <div className="p-5 pl-0">
-                                <DropdownMenu>
-                                    <DropdownMenuTrigger className="font-bold text-white border p-4 rounded-full"><a href="">Modelos</a></DropdownMenuTrigger>
-
-                                </DropdownMenu>
-                            </div>
-                        </nav>
-                    </div>
-
-                    <div className="w-full bg-green-700 bg-opacity-50 p-4">
-                        <Carrossel />
-                    </div>
+                            <p className="text-lg md:text-base lg:text-xl font-bold  text-center border border-green-600 bg-white-100 text-white rounded-lg lg:max-w-sm lg:ml-32">Sua loja de referência que combina estilo, qualidade e conforto.</p>
+                        </div>
 
 
+                    </aside>
+                    <nav className="flex">
+                        <div className="p-5 pr-2">
+                            <DropdownMenu>
+                                <DropdownMenuTrigger className="font-bold text-white border p-4 rounded-full ">Categorias</DropdownMenuTrigger>
+                                <DropdownMenuContent>
+                                    {categorias.map((categoria) => (
+                                        <div key={categoria.id}>
+                                            <DropdownMenuLabel>{categoria.name}</DropdownMenuLabel>
+                                        </div>))}
+                                </DropdownMenuContent>
+                            </DropdownMenu>
+                        </div>
+                        <div className="p-5 pl-0">
+                            <DropdownMenu>
+                                <DropdownMenuTrigger className="font-bold text-white border p-4 rounded-full"><a href="">Modelos</a></DropdownMenuTrigger>
+
+                            </DropdownMenu>
+                        </div>
+                    </nav>
+                </div>
+
+                <div className="w-full bg-green-700 bg-opacity-50 p-4">
+                    <Carrossel />
+                </div>
+
+                {spinner ? (<Spinner />) : (
                     <div className=" grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-7 m-4 " id="produtos">
                         {produtos.map((produto) => (
                             <div key={produto.id} className="bg-green-700 bg-opacity-50 p-3 rounded-xl">
@@ -161,11 +165,14 @@ function App() {
                                 </div>
                             </div>
                         ))}
+
                     </div>
+                )}
 
 
 
-                </main >
+
+            </main >
 
 
         </>

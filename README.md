@@ -51,5 +51,5 @@ As requisições são feitas utilizando o Axios, com tratamento de carregamento 
 
 Este projeto é de uso educacional, desenvolvido como parte da disciplina de Web2 no curso de Análise e Desenvolvimento de Sistemas.
 
-
+[Resumo Tailwind](https://github.com/feliixjuliana/Docs/blob/main/Tailwind.md)
 
